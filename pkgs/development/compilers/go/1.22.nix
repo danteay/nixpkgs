@@ -161,6 +161,8 @@ stdenv.mkDerivation (finalAttrs: {
     mkdir -p $out/bin
     ln -s $GOROOT_FINAL/bin/* $out/bin
     runHook postInstall
+    touch $out/share/go/VERSION
+    echo "go${finalAttrs.version}" >> $out/share/go/VERSION
   '';
 
   disallowedReferences = [ goBootstrap ];
